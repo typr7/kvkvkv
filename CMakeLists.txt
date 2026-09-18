@@ -7,6 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(kv_core
   src/memory_kv.cpp
+  src/internal_key.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
@@ -39,6 +40,7 @@ if(BUILD_TESTING)
 
   add_executable(kv_tests
     tests/memory_kv_test.cpp
+    tests/internal_key_test.cpp
   )
 
   target_link_libraries(kv_tests

@@ -5,8 +5,7 @@
 #include <string>
 
 
-namespace kv
-{
+namespace kv {
 
 class MemoryKV {
 public:
