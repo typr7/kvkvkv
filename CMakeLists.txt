@@ -8,6 +8,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_library(kv_core
   src/memory_kv.cpp
   src/internal_key.cpp
+  src/skip_list.cpp
+  src/memtable.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
