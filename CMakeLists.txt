@@ -11,6 +11,7 @@ add_library(kv_core
   src/skip_list.cpp
   src/memtable.cpp
   src/coding.cpp
+  src/wal_record.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
