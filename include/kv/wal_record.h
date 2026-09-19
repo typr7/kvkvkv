@@ -10,7 +10,7 @@
 
 namespace kv {
 
-// WAL memory layout
+// WAL payload layout
 // [sequence: uint64_t][type: 1 byte][key_length: uint32_t][value_length: uint32_t][key][value]
 
 inline constexpr std::size_t kWalPayloadHeaderSize = 17;

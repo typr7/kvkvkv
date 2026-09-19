@@ -12,6 +12,8 @@ add_library(kv_core
   src/memtable.cpp
   src/coding.cpp
   src/wal_record.cpp
+  src/wal_frame.cpp
+  src/crc32c.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)

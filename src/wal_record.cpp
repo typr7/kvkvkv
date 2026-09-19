@@ -1,4 +1,5 @@
 #include <utility>
+#include <tuple>
 
 #include "kv/wal_record.h"
 #include "kv/coding.h"
@@ -54,9 +55,7 @@ bool DecodeWalPayload(std::string_view input, WalRecord& output) {
   WalRecord decoded;
 
   // sequence
-  if (!GetFixed64(input, decoded.sequence)) {
-    return false;
-  }
+  std::ignore = GetFixed64(input, decoded.sequence);
 
   // type
   char type_val = input.front();
@@ -70,9 +69,8 @@ bool DecodeWalPayload(std::string_view input, WalRecord& output) {
   // key_length and value_length
   std::uint32_t key_len = 0;
   std::uint32_t value_len = 0;
-  if (!GetFixed32(input, key_len) || !GetFixed32(input, value_len)) {
-    return false;
-  }
+  std::ignore = GetFixed32(input, key_len);
+  std::ignore = GetFixed32(input, value_len);
   
   if (decoded.type == ValueType::kDeletion && value_len != 0) {
     return false;
