@@ -16,6 +16,7 @@ add_library(kv_core
   src/crc32c.cpp
   src/wal_writer.cpp
   src/wal_reader.cpp
+  src/wal_recovery.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
