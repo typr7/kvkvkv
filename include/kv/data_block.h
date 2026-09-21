@@ -2,10 +2,10 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <optional>
 #include <string>
 #include <string_view>
 #include <vector>
+#include <memory>
 
 #include "internal_key.h"
 
@@ -49,6 +49,32 @@ public:
 private:
   std::string data_;
   std::vector<std::uint32_t> offsets_;
+};
+
+class DataBlock {
+public:
+  struct Entry {
+    InternalKey key;
+    std::string value;
+  };
+
+  [[nodiscard]]
+  static std::unique_ptr<DataBlock> Decode(std::string_view input);
+
+  [[nodiscard]]
+  std::size_t Size() const noexcept {
+    return entries_.size();
+  }
+
+  [[nodiscard]]
+  const Entry& At(std::size_t index) const {
+    return entries_[index];
+  }
+
+private:
+  DataBlock() = default;
+
+  std::vector<Entry> entries_;
 };
 
 }
