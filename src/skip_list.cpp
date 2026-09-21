@@ -1,6 +1,8 @@
+#include <cassert>
 #include <utility>
 
 #include "kv/skip_list.h"
+#include "kv/internal_key.h"
 
 
 namespace kv {
@@ -60,6 +62,36 @@ int SkipList::RandomHeight()
   }
 
   return height;
+}
+
+// SkipList::Iterator
+
+bool SkipList::Iterator::Valid() const noexcept {
+  return (cur_ != nullptr);
+}
+
+void SkipList::Iterator::SeekToBegin() noexcept {
+  cur_ = list_->head_.next[0];
+}
+
+void SkipList::Iterator::Seek(const InternalKey& target) {
+  cur_ = list_->LowerBound(target);
+}
+
+void SkipList::Iterator::Next() noexcept {
+  if (Valid()) {
+    cur_ = cur_->next[0];
+  }
+}
+
+const InternalKey& SkipList::Iterator::Key() const {
+  assert(Valid());
+  return cur_->key;
+}
+
+const std::string& SkipList::Iterator::Value() const {
+  assert(Valid());
+  return cur_->value;
 }
 
 }
