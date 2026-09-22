@@ -71,10 +71,14 @@ public:
     return entries_[index];
   }
 
+  [[nodiscard]]
+  std::size_t LowerBound(const InternalKey& target) const;
+
 private:
   DataBlock() = default;
 
   std::vector<Entry> entries_;
+  InternalKeyComparator less_;
 };
 
 }

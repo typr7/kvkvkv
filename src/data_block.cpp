@@ -146,4 +146,21 @@ std::unique_ptr<DataBlock> DataBlock::Decode(std::string_view input) {
   return block;
 }
 
+std::size_t DataBlock::LowerBound(const InternalKey& target) const {
+
+  int left = 0;
+  int right = static_cast<int>(entries_.size());
+
+  while (left < right) {
+    int mid = left + ((right - left) >> 1);
+    if (less_(entries_[mid].key, target)) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+
+  return static_cast<std::size_t>(left);
+}
+
 }
