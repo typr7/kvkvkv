@@ -18,6 +18,8 @@ add_library(kv_core
   src/wal_reader.cpp
   src/wal_recovery.cpp
   src/data_block.cpp
+  src/sstable_format.cpp
+  src/index_block.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
