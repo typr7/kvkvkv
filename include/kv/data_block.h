@@ -78,7 +78,6 @@ private:
   DataBlock() = default;
 
   std::vector<Entry> entries_;
-  InternalKeyComparator less_;
 };
 
 }
