@@ -21,6 +21,7 @@ add_library(kv_core
   src/sstable_format.cpp
   src/index_block.cpp
   src/sstable_writer.cpp
+  src/sstable_builder.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
