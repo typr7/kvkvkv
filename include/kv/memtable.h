@@ -1,23 +1,12 @@
 #pragma once
 
-#include <cstdint>
 #include <string>
 
 #include "skip_list.h"
+#include "lookup_result.h"
 
 
 namespace kv {
-
-enum class LookupState: uint8_t {
-  kNotFound = 0,
-  kValue = 1,
-  kDeleted = 2
-};
-
-struct LookupResult {
-  LookupState state = LookupState::kNotFound;
-  std::string value;
-};
 
 class MemTable {
 public:
