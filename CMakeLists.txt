@@ -22,6 +22,7 @@ add_library(kv_core
   src/index_block.cpp
   src/sstable_writer.cpp
   src/sstable_builder.cpp
+  src/sstable_reader.cpp
 )
 
 target_compile_features(kv_core PUBLIC cxx_std_20)
@@ -55,6 +56,7 @@ if(BUILD_TESTING)
   add_executable(kv_tests
     tests/memory_kv_test.cpp
     tests/internal_key_test.cpp
+    tests/sstable_reader_test.cpp
   )
 
   target_link_libraries(kv_tests
